@@ -155,7 +155,7 @@ def sana(command):
     if "hey what's up" in command:
         speak("Just chiling around, what can I help you with ?")
 
-    elif "hey sana" in command:
+    elif "hey sana" in command or "hello" in command:
         speak("Hey , what can I do for you?")
     
     elif "nothing" in command:
@@ -178,13 +178,41 @@ def sana(command):
         str_time=datetime.datetime.now().strftime("%H:%M:%S") #tells the time using datetime module
         speak(f"The time is {str_time}")
     
-    elif "youtube" in command:
-        speak("Opening Youtube....") 
-        driver = webdriver.Chrome() 
-        driver.get("http://www.youtube.com") #opens youtube using the selenium module
+    
+    elif 'open google and search' in command:
+        reg_ex = re.search('open google and search (.*)', command)
+        search_for = command.split("search",1)[1] 
+        print(search_for)
+        url = 'https://www.google.com/'
+        
+        if reg_ex:
+            subgoogle = reg_ex.group(1)
+            url = url + 'r/' + subgoogle
+        
+        speak('Opening Google.....')
+        driver = webdriver.Chrome()
+        driver.get('http://www.google.com')
+        search = driver.find_element_by_name('q')
+        search.send_keys(str(search_for))
+        search.send_keys(Keys.RETURN)
+
+
+
+    elif 'youtube' in command:
+        speak('Opening Youtube.....')
+
+        reg_ex = re.search('youtube (.+)', command)
+
+        if reg_ex:
+            domain = command.split("youtube",1)[1] 
+            query_string = urllib.parse.urlencode({"search_query" : domain})
+            html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string)
+            search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode())
+            webbrowser.open("http://www.youtube.com/watch?v={}".format(search_results[0]))
+    
     
     elif "stop" in command or "quit" in command or "bye" in command:
-        speak("Okay,see you later :) ")
+        speak("Okay,see you later :)")
         quit() #quits the entire program. 
     
 
