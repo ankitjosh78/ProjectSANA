@@ -28,7 +28,7 @@ import wikipedia #wikipedia module to get data
 import random #maybe of some use somewhere
 import smtplib #for sending email
 from selenium import webdriver #an advanced type of web browser using tool
-from selenium.webdriver.common.keys import Keys 
+from selenium.webdriver.common.keys import Keys #for using selenium install the driver for your browser.I will be using chrome
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup # A web scraper , useful for getting data in websites
 import requests #Useful for getting data in websites. We will see what to use and when
