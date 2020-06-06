@@ -167,6 +167,9 @@ def sana(command):
     elif "nice" in command or "cool" in command or "awesome" in command or "great" in command:
         speak("I'm glad you liked it")
     
+    elif "who made you" in command or "who developed you" in command:
+        speak ("I were developed by Ankit Josh")
+    
     elif "wikipedia" in command: #example: cristiano ronaldo wikipedia
         speak("Searching Wikipedia....")
         command= command.replace("wikipedia","")
