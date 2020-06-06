@@ -198,7 +198,7 @@ def sana(command):
 
 
 
-    elif 'youtube' in command:  #to play a video on youtube.
+    elif 'youtube' in command:  #to play a video on youtube. example:youtube carryminati
         speak('Opening Youtube.....')
 
         reg_ex = re.search('youtube (.+)', command)
@@ -208,8 +208,9 @@ def sana(command):
             query_string = urllib.parse.urlencode({"search_query" : domain})
             html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string)
             search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode())
-            webbrowser.open("http://www.youtube.com/watch?v={}".format(search_results[0]))
-    
+            s=("http://www.youtube.com/watch?v={}".format(search_results[0]))
+            driver = webdriver.Chrome()
+            driver.get(s)
     
     elif "stop" in command or "quit" in command or "bye" in command:
         speak("Okay,see you later :)")
