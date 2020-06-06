@@ -68,7 +68,7 @@ def speak(audio):
     file=str(r1)+"hahahaha"+str(r2)+'.mp3' 
 
     text_to_speech=gTTS(text=audio,lang='en-us',slow=False) #This converts our text to speech. I like en-us more than en-in.
-    text_to_speech.save(file) #This saves the speech in a random named file
+    text_to_speech.save(file)                               #This saves the speech in a random named file
     
     playsound(file) #It plays sound
     
@@ -179,8 +179,8 @@ def sana(command):
         speak(f"The time is {str_time}")
     
     
-    elif 'open google and search' in command:
-        reg_ex = re.search('open google and search (.*)', command)
+    elif 'open google and search' in command: #to make a google search. example:open google and search coronavirus.
+        reg_ex = re.search('open google and search (.*)', command) 
         search_for = command.split("search",1)[1] 
         print(search_for)
         url = 'https://www.google.com/'
@@ -198,7 +198,7 @@ def sana(command):
 
 
 
-    elif 'youtube' in command:
+    elif 'youtube' in command:  #to play a video on youtube.
         speak('Opening Youtube.....')
 
         reg_ex = re.search('youtube (.+)', command)
