@@ -1,16 +1,17 @@
 #Required libraries and modules. Probably not all will be used. But download them all (just incase)
-#I think we can first make it as an assitant rather than a chat bot.
 # The assistant will be able to do what we say.
-#example: If we say open youtube , it will open www.youtube.com on browser
+#example: If we say open google and search something, it should search for something
 #If we ask hey sana what is the time? It will tell the time
 #If we ask play some music for me then it will play music from a specific directory.
 #If we ask for information about someone(celeb) it will fetch that from wikipedia.
 #It can send e-mail via smtp module of python
-#It should be even able to search for a specific title said by us in youtube( i am not sure how we can do this but lets see.)
-# I am going to write beside all the libraries its purpose.
+#It should be even able to search for a specific title said by us in youtube
+#I am going to write beside all the libraries its purpose.
 #I will suggest you to use VS code.
 
 
+#Finally, I have put in a lot of effort into this so take your time in reading the instructions and the comments.
+#I can assure you ,you will definitenely learn /understand.
 
 
 import speech_recognition as sr #for speech recognition ,in the project we will call it sr
@@ -54,11 +55,13 @@ import pyaudio #a required module to use sr
 #Rest of the packages are inbuilt with python
 
 #Alright I think we are good to go. I want to tell you that we might not require all libraries.
-#But I know about some of these libraries and know just basic about the others.Anyways it might be of use.
+
 #Let us start discussing how the assistant will work. My idea is to use sr to get the voice as a text.
+
 #Accordingly we can perform various operation. Example: if we find the word "time" we can reply with the current time.
 
 #the speak function takes input as a text. When we will give input as voice we have to use sr and convert it to text.
+
 def speak(audio):
     print(audio) #So that we know it is saying
     r1=random.randint(1,10000000) #If you are shocked why I used random module it is because if I use the speak once
@@ -143,10 +146,10 @@ def listen():
 #From this function our assistant starts it real functioning.
 #The commands are pretty much self explanatory.
 
-#BY THE WAY, I SPENT MY ENTIRE DAY ON THIS PROJECT. DO TELL ME IF YOU LIKED IT.
+#BY THE WAY, I SPENT MY 4 ENTIRE DAYS ON THIS PROJECT. DO TELL ME IF YOU LIKED IT.
 
 
-# I used my mobile as a wireless mic with help of an app.
+
 
 #I will be adding more functionalities to it after I'm done testing them on my machine.
 
@@ -154,6 +157,12 @@ def sana(command):
     
     if "hey what's up" in command:
         speak("Just chiling around, what can I help you with ?")
+
+    elif "how are you" in command:
+        speak("I'm good ,what about you?")
+
+    elif "i am great"in command or "i am good" in command:
+        speak("Good to hear that.") 
 
     elif "hey sana" in command or "hello" in command:
         speak("Hey , what can I do for you?")
@@ -165,10 +174,10 @@ def sana(command):
         speak("You are welcome ")
     
     elif "nice" in command or "cool" in command or "awesome" in command or "great" in command:
-        speak("I'm glad you liked it")
+        speak("I'm glad, you liked it.")
     
     elif "who made you" in command or "who developed you" in command:
-        speak ("I were developed by Ankit Josh")
+        speak ("I was made by Ankit Josh and am being continuosly developed more.")
     
     elif "wikipedia" in command: #example: cristiano ronaldo wikipedia
         speak("Searching Wikipedia....")
@@ -183,38 +192,39 @@ def sana(command):
     
     
     elif 'open google and search' in command: #to make a google search. example:open google and search coronavirus.
-        reg_ex = re.search('open google and search (.*)', command) 
-        search_for = command.split("search",1)[1] 
-        print(search_for)
-        url = 'https://www.google.com/'
+        reg_ex = re.search('open google and search (.*)', command)  #returns to us a match object . refer to https://www.w3schools.com/python/python_regex.asp for more information
         
-        if reg_ex:
-            subgoogle = reg_ex.group(1)
-            url = url + 'r/' + subgoogle
-        
-        speak('Opening Google.....')
-        driver = webdriver.Chrome()
-        driver.get('http://www.google.com')
-        search = driver.find_element_by_name('q')
-        search.send_keys(str(search_for))
-        search.send_keys(Keys.RETURN)
+        if reg_ex: #ensures we have a word after the 'search'
+            search_for = command.split("search",1)[1] #gets us the word(s) after the phrase 
+            
+            speak('Opening Google.....')
+            
+            driver = webdriver.Chrome() #refer to selenium module documentation for better understanding
+            driver.get('http://www.google.com')
+            search = driver.find_element_by_name('q')
+            search.send_keys(str(search_for))
+            search.send_keys(Keys.RETURN)
 
 
 
     elif 'youtube' in command:  #to play a video on youtube. example:youtube carryminati
         speak('Opening Youtube.....')
 
-        reg_ex = re.search('youtube (.+)', command)
+        reg_ex = re.search('youtube (.+)', command) #similar to open google
 
         if reg_ex:
             domain = command.split("youtube",1)[1] 
-            query_string = urllib.parse.urlencode({"search_query" : domain})
-            html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string)
-            search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode())
-            s=("http://www.youtube.com/watch?v={}".format(search_results[0]))
+            query_string = urllib.parse.urlencode({"search_query" : domain}) #encodes our query with the "search query" string since youtube works like that.
+            html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string) #basically just does a search on youtube
+            search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode()) #decodes the received url and stores it as a html type object
+            s=("http://www.youtube.com/watch?v={}".format(search_results[0])) #goes with the first search result 
             driver = webdriver.Chrome()
             driver.get(s)
     
+    
+    #here it goes with the first search result since it is mostly the relevant one ,thus, the output might vary sometimes.
+
+
     elif "stop" in command or "quit" in command or "bye" in command:
         speak("Okay,see you later :)")
         quit() #quits the entire program. 
@@ -244,5 +254,3 @@ if __name__ == "__main__": #the main fucnction , it is optional though
     while True: #infinite loop to continue conersations.
         
         sana(listen()) #this function returns the string of our voice to the listen function.
-
-    
