@@ -201,7 +201,7 @@ def sana(command):
 
     elif 'github' in command: #opens your github account.
         driver=webdriver.Chrome()
-        driver.get('https://www.github.com/ankitjosh78')
+        driver.get('https://www.github.com/ankitjosh78') #use your own account id here.
 
 
 
