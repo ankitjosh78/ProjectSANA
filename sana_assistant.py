@@ -199,7 +199,7 @@ def sana(command):
             search.send_keys(Keys.RETURN)
 
 
-    elif 'github' in command:
+    elif 'github' in command: #opens your github account.
         driver=webdriver.Chrome()
         driver.get('https://www.github.com/ankitjosh78')
 
