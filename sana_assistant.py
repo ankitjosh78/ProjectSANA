@@ -78,7 +78,7 @@ def speak(audio):
     os.remove(file) #It deletes the file after its use
 
 # This is just a sample.
-#I think Sana is more easily understandable in english compared to Megha.
+
 
 
 
@@ -133,7 +133,7 @@ def listen():
     
     except sr.UnknownValueError: #if due to some reason it could not hear us
         
-        speak("Your last command couldn\'t be heard")
+        print("Your last command couldn\'t be heard")
         
         command=listen() #infinite loop and tries to listen to us again
     
