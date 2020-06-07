@@ -9,11 +9,8 @@
 #I am going to write beside all the libraries its purpose.
 #I will suggest you to use VS code.
 
-
 #FINALLY, I have put in a lot of effort into this so take your time in reading the instructions and the comments.
 #I can assure you ,you will definitenely learn /understand.
-
-
 import speech_recognition as sr #for speech recognition ,in the project we will call it sr
 from gtts import gTTS #for text to speech conversion using google's api
 from playsound import playsound #to play sound
@@ -205,7 +202,7 @@ def sana(command):
     elif 'github' in command:
         driver=webdriver.Chrome()
         driver.get('https://www.github.com/ankitjosh78')
-        
+
 
 
 
