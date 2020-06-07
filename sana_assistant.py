@@ -1,4 +1,4 @@
-#Required libraries and modules. Probably not all will be used. But download them all (just incase)
+#Required libraries and modules. 
 # The assistant will be able to do what we say.
 #example: If we say open google and search something, it should search for something
 #If we ask hey sana what is the time? It will tell the time
@@ -17,20 +17,17 @@
 import speech_recognition as sr #for speech recognition ,in the project we will call it sr
 from gtts import gTTS #for text to speech conversion using google's api
 from playsound import playsound #to play sound
-import pyttsx3 # it is also a tts library. works offline.
-import webbrowser #speaks for itself
 import re #support for regular expression
 import os #to get access to the system like opening a .mp3 file
-import time 
-import datetime
-import nltk #a natural language toolkit. may or may not be of use
+import time #self explanatory
+import datetime #self explanatory
 import wikipedia #wikipedia module to get data
 import random #maybe of some use somewhere
 import smtplib #for sending email
 from selenium import webdriver #an advanced type of web browser using tool
 from selenium.webdriver.common.keys import Keys #for using selenium install the driver for your browser.I will be using chrome
 from selenium.webdriver.chrome.options import Options
-from bs4 import BeautifulSoup # A web scraper , useful for getting data in websites
+from bs4 import BeautifulSoup # A web scraper , useful for getting data from websites
 import requests #Useful for getting data in websites. We will see what to use and when
 import urllib.request #useful to open links
 import urllib.parse #nothing special just parses data.
@@ -42,8 +39,6 @@ import pyaudio #a required module to use sr
 #speech_recognition: pip install SpeechRecognition
 #gtts: pip install gTTS
 #playsound :pip install playsound
-#pyttsx3: pip install pyttsx3
-#nltk: pip install nltk
 #wikipedia: pip install wikipedia
 #smtplib: pip install smtplib
 #selenium: pip install selenium
@@ -54,7 +49,7 @@ import pyaudio #a required module to use sr
 
 #Rest of the packages are inbuilt with python
 
-#Alright I think we are good to go. I want to tell you that we might not require all libraries.
+#Alright I think we are good to go.
 
 #Let us start discussing how the assistant will work. My idea is to use sr to get the voice as a text.
 
@@ -91,15 +86,15 @@ def wish_user():
 
         speak("Why are you still awake ? You night owl !")
 
-    elif current_hour>4 and current_hour<12:
+    elif current_hour>=4 and current_hour<12:
 
         speak("Good Morning " )
 
-    elif current_hour>12 and current_hour<16:
+    elif current_hour>=12 and current_hour<16:
 
         speak("Good Afternoon" )
 
-    elif current_hour>16 and current_hour<22:
+    elif current_hour>=16 and current_hour<=22:
 
         speak("Good Evening ")
 
