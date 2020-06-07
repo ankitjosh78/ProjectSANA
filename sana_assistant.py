@@ -2,7 +2,7 @@
 # The assistant will be able to do what we say.
 #example: If we say open google and search something, it should search for something
 #If we ask hey sana what is the time? It will tell the time
-#If we ask play some music for me then it will play music from a specific directory.
+#If we ask play music for me then it will play music from a specific directory.
 #If we ask for information about someone(celeb) it will fetch that from wikipedia.
 #It can send e-mail via smtp module of python
 #It should be even able to search for a specific title said by us in youtube
@@ -10,7 +10,7 @@
 #I will suggest you to use VS code.
 
 
-#Finally, I have put in a lot of effort into this so take your time in reading the instructions and the comments.
+#FINALLY, I have put in a lot of effort into this so take your time in reading the instructions and the comments.
 #I can assure you ,you will definitenely learn /understand.
 
 
@@ -59,13 +59,13 @@ import pyaudio #a required module to use sr
 
 def speak(audio):
     print(audio) #So that we know it is saying
-    r1=random.randint(1,10000000) #If you are shocked why I used random module it is because if I use the speak once
-    r2=random.randint(1,10000000) #then the next time the file was getting mixed and there was an error. I do not know the probability of getting the same file though ^_^.
+    r1=random.randint(1, 10000000) #If you are shocked why I used random module it is because if I use the speak once
+    r2=random.randint(1, 10000000) #then the next time the file was getting mixed and there was an error. I do not know the probability of getting the same file though ^_^.
 
     
     file=str(r1)+"hahahaha"+str(r2)+'.mp3' 
 
-    text_to_speech=gTTS(text=audio,lang='en-us',slow=False) #This converts our text to speech. I like en-us more than en-in.
+    text_to_speech=gTTS(text=audio, lang='en-us', slow=False) #This converts our text to speech. I like en-us more than en-in.
     text_to_speech.save(file)                               #This saves the speech in a random named file
     
     playsound(file) #It plays sound
@@ -79,7 +79,7 @@ def speak(audio):
 
 #I made this function wish_user() so that it will wish the user whenever the user runs the program.
 #Depending upon the time of the day.
-def wish_user():
+def greet_user():
     current_hour=int(datetime.datetime.now().hour)
 
     if current_hour >=0 and current_hour <4:
@@ -113,18 +113,18 @@ def listen():
     listener=sr.Recognizer() #I am initializing the listener
     with sr.Microphone() as source: 
         print("SANA is ready...")
-        listener.pause_threshold=2 #wait for 2 seconds for the voice
+        listener.pause_threshold=1 #wait for 2 seconds for the voice
 
-        listener.adjust_for_ambient_noise(source,duration=1) # so that the noise is less
+        listener.adjust_for_ambient_noise(source, duration=1) # so that the noise is less
 
         audio = listener.listen(source) #listens 
 
     try: #tries to translate it
         print("Recognizing.....")
         
-        command=listener.recognize_google(audio,language='en-in').lower() #i am using lower() so that no case error is received when comparing the strings
+        command=listener.recognize_google(audio, language='en-in').lower() #i am using lower() so that no case error is received when comparing the strings
         
-        print("You said :",command+'\n') 
+        print("You said :", command+'\n') 
     
     except sr.UnknownValueError: #if due to some reason it could not hear us
         
@@ -177,7 +177,7 @@ def sana(command):
     elif "wikipedia" in command: #example: cristiano ronaldo wikipedia
         speak("Searching Wikipedia....")
         command= command.replace("wikipedia","")
-        results=wikipedia.summary(command,sentences=1) #you can configure how many sentences you want to listen.
+        results=wikipedia.summary(command, sentences=2) #you can configure how many sentences you want to listen.
         speak("According to Wikipedia")
         speak(results)
     
@@ -215,13 +215,24 @@ def sana(command):
             s=("http://www.youtube.com/watch?v={}".format(search_results[0])) #goes with the first search result 
             driver = webdriver.Chrome()
             driver.get(s)
+        #here it goes with the first search result since it is mostly the relevant one ,thus, the output might vary sometimes.
     
     
-    #here it goes with the first search result since it is mostly the relevant one ,thus, the output might vary sometimes.
+    
+    elif 'play music' in command : #to play a random song from a local directory using groove
+        music_location='F:\\Songs' #the directory from which you want to play the songs
+        song_names=os.listdir(music_location) #lists all the songs and returns them in a list
+        
+        n=random.randint(0, 99) #generates a random number between 0 to 99. 99 because I have 100 songs only in that dir.
+        
+        
+        os.startfile(os.path.join(music_location,song_names[n])) #starts playing a random song
 
 
+    
     elif "stop" in command or "quit" in command or "bye" in command:
         speak("Okay,see you later :)")
+        
         quit() #quits the entire program. 
     
 
@@ -236,15 +247,12 @@ def sana(command):
 
 
 
-
-
-
-
 #I'm leaving spaces for more functionalities that I might add later.
+
 
 if __name__ == "__main__": #the main fucnction , it is optional though
     
-    wish_user() #wishes the user
+    greet_user() #wishes the user
     
     while True: #infinite loop to continue conversations.
         
