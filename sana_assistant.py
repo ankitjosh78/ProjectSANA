@@ -65,7 +65,7 @@ def speak(audio):
     
     file=str(r1)+"hahahaha"+str(r2)+'.mp3' 
 
-    text_to_speech=gTTS(text=audio, lang='en-us', slow=False) #This converts our text to speech. I like en-us more than en-in.
+    text_to_speech=gTTS(text=audio, lang='en-us', slow=False) #This converts our text to speech.
     text_to_speech.save(file)                               #This saves the speech in a random named file
     
     playsound(file) #It plays sound
@@ -122,7 +122,8 @@ def listen():
     try: #tries to translate it
         print("Recognizing.....")
         
-        command=listener.recognize_google(audio, language='en-in').lower() #i am using lower() so that no case error is received when comparing the strings
+        #my country is india so i have chosen lang='en-in'. i am using lower() function so that no case error is received when comparing the strings.
+        command=listener.recognize_google(audio, language='en-in').lower() 
         
         print("You said :", command+'\n') 
     
