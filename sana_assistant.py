@@ -202,6 +202,14 @@ def sana(command):
             search.send_keys(Keys.RETURN)
 
 
+    elif 'github' in command:
+        driver=webdriver.Chrome()
+        driver.get('https://www.github.com/ankitjosh78')
+        
+
+
+
+
 
     elif 'youtube' in command:  #to play a video on youtube. example:youtube carryminati
         speak('Opening Youtube.....')
