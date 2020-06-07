@@ -65,7 +65,7 @@ def speak(audio):
     
     file=str(r1)+"hahahaha"+str(r2)+'.mp3' 
 
-    text_to_speech=gTTS(text=audio, lang='en-us', slow=False) #This converts our text to speech.
+    text_to_speech=gTTS(text=audio, lang='en-uk', slow=False) #This converts our text to speech.
     text_to_speech.save(file)                               #This saves the speech in a random named file
     
     playsound(file) #It plays sound
@@ -113,7 +113,7 @@ def listen():
     listener=sr.Recognizer() #I am initializing the listener
     with sr.Microphone() as source: 
         print("SANA is ready...")
-        listener.pause_threshold=1 #wait for 2 seconds for the voice
+        listener.pause_threshold=1 #wait for 1 seconds for the voice
 
         listener.adjust_for_ambient_noise(source, duration=1) # so that the noise is less
 
@@ -129,7 +129,7 @@ def listen():
     
     except sr.UnknownValueError: #if due to some reason it could not hear us
         
-        print("Your last command couldn\'t be heard")
+        speak("Your last command couldn\'t be heard")
         
         command=listen() #infinite loop and tries to listen to us again
     
@@ -152,7 +152,7 @@ def listen():
 def sana(command): 
     
     if "hey what's up" in command:
-        speak("Just chiling around, what can I help you with ?")
+        speak("Just chilling around, what can I help you with ?")
 
     elif "how are you" in command:
         speak("I'm good ,what about you?")
