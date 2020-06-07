@@ -251,6 +251,6 @@ if __name__ == "__main__": #the main fucnction , it is optional though
     
     wish_user() #wishes the user
     
-    while True: #infinite loop to continue conersations.
+    while True: #infinite loop to continue conversations.
         
-        sana(listen()) #this function returns the string of our voice to the listen function.
+        sana(listen()) #this function returns the string of our voice from the listen function to the sana function.
