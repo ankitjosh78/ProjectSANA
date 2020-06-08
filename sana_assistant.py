@@ -112,17 +112,7 @@ def sana(command):
 
     # This where the chatting part ends. From now there will just be different functionalities
 
-    elif "wikipedia" in command:  # example: cristiano ronaldo wikipedia
-        speak("Searching Wikipedia....")
-
-        command = command.replace("wikipedia", "")
-
-        results = wikipedia.summary(command, sentences=2)
-
-        speak("According to Wikipedia")
-
-        speak(results)
-
+    
     elif "time" in command:  # tells the time using datetime module
         str_time = datetime.datetime.now().strftime("%H:%M:%S")
 
@@ -138,7 +128,7 @@ def sana(command):
 
             driver = webdriver.Chrome()
 
-            driver.get('https://www.google.com')
+            driver.get('http://www.google.com')
 
             search = driver.find_element_by_name('q')
 
@@ -150,7 +140,7 @@ def sana(command):
 
         driver = webdriver.Chrome()
 
-        driver.get('https://www.github.com/ankitjosh78')  # use your own account id here.
+        driver.get('http://www.github.com/ankitjosh78')  # use your own account id here.
 
     elif 'youtube' in command:  # to play a video on youtube. example:open youtube play carryminati. It goes with the
         # first search result.
@@ -173,7 +163,20 @@ def sana(command):
             driver = webdriver.Chrome()
 
             driver.get(s)
+    
+    
+    elif "wikipedia" in command:  # example: cristiano ronaldo wikipedia
+        speak("Searching Wikipedia....")
 
+        command = command.replace("wikipedia", "")
+
+        results = wikipedia.summary(command, sentences=2)
+
+        speak("According to Wikipedia")
+
+        speak(results)
+    
+    
     elif 'play music' in command:  # to play a random song from a local directory using groove
         music_location = 'F:\\Songs'  # the directory from which you want to play the songs
         song_names = os.listdir(music_location)
