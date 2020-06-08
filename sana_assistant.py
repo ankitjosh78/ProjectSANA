@@ -22,11 +22,11 @@ import pyaudio
 #the speak function takes input as a text. When we will give input as voice we have to use sr and convert it to text.
 def speak(audio):
     
-    print(audio) #So that we know it is saying
+    print(audio) #It prints whatever it is going to say.
    
-    r1=random.randint(1, 10000000) #If you are shocked why I used random module it is because if I use the speak once
+    r1=random.randint(1, 10000000) 
     
-    r2=random.randint(1, 10000000) #then the next time the file was getting mixed and there was an error. I do not know the probability of getting the same file though ^_^.
+    r2=random.randint(1, 10000000)
 
     
     file=str(r1)+"hahahaha"+str(r2)+'.mp3' 
