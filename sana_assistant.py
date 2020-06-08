@@ -34,19 +34,15 @@ def greet_user():
     current_hour = int(datetime.datetime.now().hour)
 
     if 0 <= current_hour < 4:
-
         speak("Why are you still awake ? You night owl !")
 
     elif 4 <= current_hour < 12:
-
         speak("Good Morning ")
 
     elif 12 <= current_hour < 16:
-
         speak("Good Afternoon")
 
     elif 16 <= current_hour <= 22:
-
         speak("Good Evening ")
 
     else:
@@ -61,7 +57,6 @@ def listen():
     listener = sr.Recognizer()  # I am initializing the listener
 
     with sr.Microphone() as source:
-
         print("SANA is ready...")
 
         listener.pause_threshold = 1  # wait for 1 seconds for the voice
@@ -71,7 +66,6 @@ def listen():
         audio = listener.listen(source)  # listens
 
     try:  # tries to translate it
-
         print("Recognizing.....")
 
         command = listener.recognize_google(audio, language='en-in').lower()  # lower() so that there is no case issues
@@ -79,7 +73,6 @@ def listen():
         print("You said :", command + '\n')
 
     except sr.UnknownValueError:  # if due to some reason it could not hear us
-
         speak("Your last command couldn\'t be heard")
 
         command = listen()  # infinite loop and tries to listen to us again
@@ -97,37 +90,29 @@ def sana(command):
         speak("Just chilling around, what can I help you with ?")
 
     elif "how are you" in command:
-
         speak("I'm good ,what about you?")
 
     elif "i am great" in command or "i am good" in command:
-
         speak("Good to hear that.")
 
     elif "hey sana" in command or "hello" in command:
-
         speak("Hey , what can I do for you?")
 
     elif "nothing" in command:
-
         speak("Alright, if you want to quit, just say stop.")
 
     elif "thank you" in command or "thanks" in command:
-
         speak("You are welcome ")
 
     elif "nice" in command or "cool" in command or "awesome" in command or "great" in command:
-
         speak("I'm glad, you liked it.")
 
     elif "who made you" in command or "who developed you" in command:
-
         speak("I was made by Ankit Josh and am being continuosly developed more.")
 
     # This where the chatting part ends. From now there will just be different functionalities
 
     elif "wikipedia" in command:  # example: cristiano ronaldo wikipedia
-
         speak("Searching Wikipedia....")
 
         command = command.replace("wikipedia", "")
@@ -139,13 +124,11 @@ def sana(command):
         speak(results)
 
     elif "time" in command:  # tells the time using datetime module
-
         str_time = datetime.datetime.now().strftime("%H:%M:%S")
 
         speak(f"The time is {str_time}")
 
     elif 'open google and search' in command:  # to make a google search, example:open google and search coronavirus.
-
         reg_ex = re.search('open google and search (.*)', command)
 
         if reg_ex:
@@ -192,7 +175,6 @@ def sana(command):
             driver.get(s)
 
     elif 'play music' in command:  # to play a random song from a local directory using groove
-
         music_location = 'F:\\Songs'  # the directory from which you want to play the songs
         song_names = os.listdir(music_location)
         n = random.randint(0,
@@ -202,7 +184,6 @@ def sana(command):
         os.startfile(os.path.join(music_location, song_names[n]))
 
     elif "stop" in command or "quit" in command or "bye" in command:
-
         speak("Okay,see you later :)")
 
         quit()  # quits the entire program.
@@ -212,7 +193,6 @@ def sana(command):
 
 
 if __name__ == "__main__":  # the main function , it is optional though
-
     greet_user()  # wishes the user
 
     while True:  # infinite loop to continue conversations.
