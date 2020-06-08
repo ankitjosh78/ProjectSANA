@@ -1,82 +1,49 @@
-#Required libraries and modules. 
-# The assistant will be able to do what we say.
-#example: If we say open google and search something, it should search for something
-#If we ask hey sana what is the time? It will tell the time
-#If we ask play music for me then it will play music from a specific directory.
-#If we ask for information about someone(celeb) it will fetch that from wikipedia.
-#It can send e-mail via smtp module of python
-#It should be even able to search for a specific title said by us in youtube
-#I am going to write beside all the libraries its purpose.
-#I will suggest you to use VS code.
-
-#FINALLY, I have put in a lot of effort into this so take your time in reading the instructions and the comments.
-#I can assure you ,you will definitenely learn /understand.
-import speech_recognition as sr #for speech recognition ,in the project we will call it sr
-from gtts import gTTS #for text to speech conversion using google's api
-from playsound import playsound #to play sound
-import re #support for regular expression
-import os #to get access to the system like opening a .mp3 file
-import time #self explanatory
-import datetime #self explanatory
-import wikipedia #wikipedia module to get data
-import random #maybe of some use somewhere
-import smtplib #for sending email
-from selenium import webdriver #an advanced type of web browser using tool
-from selenium.webdriver.common.keys import Keys #for using selenium install the driver for your browser.I will be using chrome
+import speech_recognition as sr
+from gtts import gTTS 
+from playsound import playsound 
+import re 
+import os 
+import time 
+import datetime 
+import wikipedia 
+import random 
+import smtplib
+from selenium import webdriver 
+from selenium.webdriver.common.keys import Keys 
 from selenium.webdriver.chrome.options import Options
-from bs4 import BeautifulSoup # A web scraper , useful for getting data from websites
-import requests #Useful for getting data in websites. We will see what to use and when
-import urllib.request #useful to open links
-import urllib.parse #nothing special just parses data.
-import pyaudio #a required module to use sr
-
-#Don't worry if you are not sure which modules to download and which not as some are inbuilt modules.
-#I'm compiling the modules that you need to download and their install commands.
-
-#speech_recognition: pip install SpeechRecognition
-#gtts: pip install gTTS
-#playsound :pip install playsound
-#wikipedia: pip install wikipedia
-#smtplib: pip install smtplib
-#selenium: pip install selenium
-#bs4: pip install bs4
-#requests: pip install requests
-#pyaudio: pip install pyaudio
+from bs4 import BeautifulSoup 
+import requests 
+import urllib.request
+import urllib.parse 
+import pyaudio 
 
 
-#Rest of the packages are inbuilt with python
-
-#Alright I think we are good to go.
-
-#Let us start discussing how the assistant will work. My idea is to use sr to get the voice as a text.
-
-#Accordingly we can perform various operation. Example: if we find the word "time" we can reply with the current time.
 
 #the speak function takes input as a text. When we will give input as voice we have to use sr and convert it to text.
-
 def speak(audio):
+    
     print(audio) #So that we know it is saying
+   
     r1=random.randint(1, 10000000) #If you are shocked why I used random module it is because if I use the speak once
+    
     r2=random.randint(1, 10000000) #then the next time the file was getting mixed and there was an error. I do not know the probability of getting the same file though ^_^.
 
     
     file=str(r1)+"hahahaha"+str(r2)+'.mp3' 
 
     text_to_speech=gTTS(text=audio, lang='en-uk', slow=False) #This converts our text to speech.
-    text_to_speech.save(file)                               #This saves the speech in a random named file
+    
+    text_to_speech.save(file)                              
     
     playsound(file) #It plays sound
     
     os.remove(file) #It deletes the file after its use
 
-# This is just a sample.
 
 
-
-
-#I made this function wish_user() so that it will wish the user whenever the user runs the program.
-#Depending upon the time of the day.
-def greet_user():
+#greets the user depending upon the time of the day
+def greet_user(): 
+    
     current_hour=int(datetime.datetime.now().hour)
 
     if current_hour >=0 and current_hour <4:
@@ -104,12 +71,16 @@ def greet_user():
     
     
 
-#This function listens to our command. Read the documentation for sr module and some articles explaining how the module works.
+#The listen function listens our voice ,recognizes it and tries to translate it to a string
 
 def listen(): 
+    
     listener=sr.Recognizer() #I am initializing the listener
+    
     with sr.Microphone() as source: 
+        
         print("SANA is ready...")
+        
         listener.pause_threshold=1 #wait for 1 seconds for the voice
 
         listener.adjust_for_ambient_noise(source, duration=1) # so that the noise is less
@@ -117,12 +88,12 @@ def listen():
         audio = listener.listen(source) #listens 
 
     try: #tries to translate it
+        
         print("Recognizing.....")
         
-        #my country is india so i have chosen lang='en-in'. i am using lower() function so that no case error is received when comparing the strings.
-        command=listener.recognize_google(audio, language='en-in').lower() 
+        command=listener.recognize_google(audio, language='en-in').lower() #lower() so that there is no case issues
         
-        print("You said :", command+'\n') 
+        print("You said :", command + '\n') 
     
     except sr.UnknownValueError: #if due to some reason it could not hear us
         
@@ -130,21 +101,14 @@ def listen():
         
         command=listen() #infinite loop and tries to listen to us again
     
-    
-    #return the the command given by us as a string.
-    return command 
+    return command #returns the the command given by us as a string.
 
 
 
-#From this function our assistant starts it real functioning.
-#The commands are pretty much self explanatory.
+#From this part, out assistant , starts its real functioning. 
 
 #BY THE WAY, I SPENT MY 4 ENTIRE DAYS ON THIS PROJECT. DO TELL ME IF YOU LIKED IT.
 
-
-
-
-#I will be adding more functionalities to it after I'm done testing them on my machine.
 
 def sana(command): 
     
@@ -152,91 +116,125 @@ def sana(command):
         speak("Just chilling around, what can I help you with ?")
 
     elif "how are you" in command:
+        
         speak("I'm good ,what about you?")
 
     elif "i am great"in command or "i am good" in command:
+        
         speak("Good to hear that.") 
 
     elif "hey sana" in command or "hello" in command:
+       
         speak("Hey , what can I do for you?")
     
     elif "nothing" in command:
+        
         speak("Alright, if you want to quit, just say stop.")
     
     elif "thank you" in command or "thanks" in command :
+        
         speak("You are welcome ")
     
     elif "nice" in command or "cool" in command or "awesome" in command or "great" in command:
+        
         speak("I'm glad, you liked it.")
     
     elif "who made you" in command or "who developed you" in command:
+        
         speak ("I was made by Ankit Josh and am being continuosly developed more.")
     
+    #This where the chatting part ends. From now there will just be different functionalities
+    
+    
+    
     elif "wikipedia" in command: #example: cristiano ronaldo wikipedia
+        
         speak("Searching Wikipedia....")
+        
         command= command.replace("wikipedia","")
-        results=wikipedia.summary(command, sentences=2) #you can configure how many sentences you want to listen.
+        
+        results=wikipedia.summary(command, sentences=2)
+        
         speak("According to Wikipedia")
+        
         speak(results)
     
-    elif "time" in command:
-        str_time=datetime.datetime.now().strftime("%H:%M:%S") #tells the time using datetime module
+    
+    elif "time" in command: #tells the time using datetime module
+        
+        str_time=datetime.datetime.now().strftime("%H:%M:%S") 
+        
         speak(f"The time is {str_time}")
     
     
-    elif 'open google and search' in command: #to make a google search. example:open google and search coronavirus.
-        reg_ex = re.search('open google and search (.*)', command)  #returns to us a match object . refer to https://www.w3schools.com/python/python_regex.asp for more information
+    
+    elif 'open google and search' in command: #to make a google search, example:open google and search coronavirus.
         
-        if reg_ex: #ensures we have a word after the 'search'
-            search_for = command.split("search",1)[1] #gets us the word(s) after the phrase 
+        reg_ex = re.search('open google and search (.*)', command) 
+        
+        if reg_ex==True:
+            
+            search_for = command.split("search",1)[1] 
             
             speak('Opening Google.....')
             
-            driver = webdriver.Chrome() #refer to selenium module documentation for better understanding
+            driver = webdriver.Chrome()
+            
             driver.get('http://www.google.com')
+            
             search = driver.find_element_by_name('q')
+           
             search.send_keys(str(search_for))
+            
             search.send_keys(Keys.RETURN)
 
 
+    
     elif 'github' in command: #opens your github account.
+        
         driver=webdriver.Chrome()
+        
         driver.get('https://www.github.com/ankitjosh78') #use your own account id here.
 
 
 
-
-
-
-    elif 'youtube' in command:  #to play a video on youtube. example:youtube carryminati
+    
+    elif 'youtube' in command:  #to play a video on youtube. example:youtube carryminati. It goes with the first search result.
+        
         speak('Opening Youtube.....')
 
         reg_ex = re.search('youtube (.+)', command) #similar to open google
 
-        if reg_ex:
+        if reg_ex==True:
+            
             domain = command.split("youtube",1)[1] 
-            query_string = urllib.parse.urlencode({"search_query" : domain}) #encodes our query with the "search query" string since youtube works like that.
-            html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string) #basically just does a search on youtube
-            search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode()) #decodes the received url and stores it as a html type object
-            s=("http://www.youtube.com/watch?v={}".format(search_results[0])) #goes with the first search result 
+            
+            query_string = urllib.parse.urlencode({"search_query" : domain}) 
+            
+            html_content = urllib.request.urlopen("http://www.youtube.com/results?" + query_string) 
+            
+            search_results = re.findall(r'href=\"\/watch\?v=(.{11})', html_content.read().decode()) 
+            
+            s=("http://www.youtube.com/watch?v={}".format(search_results[0]))
+            
             driver = webdriver.Chrome()
+            
             driver.get(s)
-        #here it goes with the first search result since it is mostly the relevant one ,thus, the output might vary sometimes.
     
     
     
     elif 'play music' in command : #to play a random song from a local directory using groove
-        music_location='F:\\Songs' #the directory from which you want to play the songs
-        song_names=os.listdir(music_location) #lists all the songs and returns them in a list
         
+        music_location='F:\\Songs' #the directory from which you want to play the songs
+        song_names=os.listdir(music_location) 
         n=random.randint(0, 99) #generates a random number between 0 to 99. 99 because I have 100 songs only in that dir.
         
-        
-        os.startfile(os.path.join(music_location,song_names[n])) #starts playing a random song
+        os.startfile(os.path.join(music_location,song_names[n])) 
 
 
     
     elif "stop" in command or "quit" in command or "bye" in command:
+        
         speak("Okay,see you later :)")
         
         quit() #quits the entire program. 
