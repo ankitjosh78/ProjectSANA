@@ -16,16 +16,9 @@ from selenium.webdriver.common.keys import Keys
 
 # the speak function takes input as a text. When we will give input as voice we have to use sr and convert it to text.
 def speak(audio):
-<<<<<<< HEAD
-    
-    print(audio) #It prints whatever it is going to say.
-    
-    file = str(time.time()) + '.mp3'
-=======
     print(audio)  # It prints whatever it is going to say.
 
     file = "SANA_reply_" + str(time.time()) + '.mp3'
->>>>>>> pr/2
 
     text_to_speech = gTTS(text=audio, lang='en-uk', slow=False)  # This converts our text to speech.
 
