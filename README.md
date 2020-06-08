@@ -19,11 +19,10 @@ If we ask for information about someone(celeb) it will fetch that from wikipedia
 It should be even able to search for a specific title said by us in youtube
 
 
+#Working
 Let us start discussing how the assistant will work. The idea is to use speech recognition to get the voice as a text.
 Accordingly, we can perform various operation. Example: if we find the word "time" we can reply with the current time.
 Refer to the code for better understanding.
-
-
 
 
 
