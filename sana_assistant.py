@@ -23,13 +23,8 @@ import pyaudio
 def speak(audio):
     
     print(audio) #It prints whatever it is going to say.
-   
-    r1=random.randint(1, 10000000) 
     
-    r2=random.randint(1, 10000000)
-
-    
-    file=str(r1)+"hahahaha"+str(r2)+'.mp3' 
+    file = str(time.time()) + '.mp3'
 
     text_to_speech=gTTS(text=audio, lang='en-uk', slow=False) #This converts our text to speech.
     
