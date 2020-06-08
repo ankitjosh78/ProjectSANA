@@ -172,7 +172,7 @@ def sana(command):
         
         reg_ex = re.search('open google and search (.*)', command) 
         
-        if reg_ex==True:
+        if reg_ex:
             
             search_for = command.split("search",1)[1] 
             
@@ -199,13 +199,13 @@ def sana(command):
 
 
     
-    elif 'youtube' in command:  #to play a video on youtube. example:youtube carryminati. It goes with the first search result.
+    elif 'youtube' in command:  #to play a video on youtube. example:open youtube play carryminati. It goes with the first search result.
         
         speak('Opening Youtube.....')
 
         reg_ex = re.search('youtube (.+)', command) #similar to open google
 
-        if reg_ex==True:
+        if reg_ex:
             
             domain = command.split("youtube",1)[1] 
             
