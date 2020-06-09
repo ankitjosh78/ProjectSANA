@@ -73,7 +73,9 @@ def listen():
         print("You said :", command + '\n')
 
     except sr.UnknownValueError:  # if due to some reason it could not hear us
-        speak("Your last command couldn\'t be heard")
+        errors=["Would you mind repeating what you said?", "I am sorry, I couldn't understand your last command. "]
+        
+        speak(random.choice(errors))
 
         command = listen()  # infinite loop and tries to listen to us again
 
@@ -87,7 +89,9 @@ def listen():
 
 def sana(command):
     if "hey what's up" in command:
-        speak("Just chilling around, what can I help you with ?")
+        reply=["Just chilling around, what can I help you with ?","Nothing much, what can I help you with ?"]
+        
+        speak(random.choice(reply))
 
     elif "how are you" in command:
         speak("I'm good ,what about you?")
@@ -102,13 +106,13 @@ def sana(command):
         speak("Alright, if you want to quit, just say stop.")
 
     elif "thank you" in command or "thanks" in command:
-        speak("You are welcome ")
+        speak("You are welcome. ")
 
     elif "nice" in command or "cool" in command or "awesome" in command or "great" in command:
-        speak("I'm glad, you liked it.")
+        speak("I'm glad, you liked it. ")
 
     elif "who made you" in command or "who developed you" in command:
-        speak("I was made by Ankit Josh and am being continuosly developed more.")
+        speak("I was made by Ankit Josh and am being continuosly developed more. ")
 
     # This where the chatting part ends. From now there will just be different functionalities
 
