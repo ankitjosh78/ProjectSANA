@@ -11,6 +11,7 @@ import wikipedia
 from gtts import gTTS
 from playsound import playsound
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 
 
@@ -20,7 +21,7 @@ def speak(audio):
 
     file = "SANA_reply_" + str(time.time()) + '.mp3'
 
-    text_to_speech = gTTS(text=audio, lang='en-uk', slow=False)  # This converts our text to speech.
+    text_to_speech = gTTS(text=audio, lang='en-us', slow=False)  # This converts our text to speech.
 
     text_to_speech.save(file)
 
@@ -84,7 +85,7 @@ def listen():
 
 # From this part, out assistant , starts its real functioning.
 
-# BY THE WAY, I SPENT MY 4 ENTIRE DAYS ON THIS PROJECT. DO TELL ME IF YOU LIKED IT.
+
 
 
 def sana(command):
@@ -93,8 +94,17 @@ def sana(command):
         
         speak(random.choice(reply))
 
+    elif "what's your name" in command or "what is your name" in command:
+        speak("My name is SANA.I'm your virtual voice assistant.Anything I can help you with?")
+    
     elif "how are you" in command:
         speak("I'm good ,what about you?")
+    
+    elif "will you be my girlfriend" in command:
+        speak("Ahem ahem! I think I like you ;-)")
+    
+    elif "i love you" in command or "i like you" in command:
+        speak("I love you too ,kisses")
 
     elif "i am great" in command or "i am good" in command:
         speak("Good to hear that.")
@@ -130,7 +140,7 @@ def sana(command):
 
             speak('Opening Google.....')
 
-            driver = webdriver.Chrome()
+            driver = webdriver.Chrome(ChromeDriverManager().install())
 
             driver.get('http://www.google.com')
 
@@ -142,7 +152,7 @@ def sana(command):
 
     elif 'github' in command:  # opens your github account.
 
-        driver = webdriver.Chrome()
+        driver = webdriver.Chrome(ChromeDriverManager().install())
 
         driver.get('http://www.github.com/ankitjosh78')  # use your own account id here.
 
@@ -164,7 +174,7 @@ def sana(command):
 
             s = ("http://www.youtube.com/watch?v={}".format(search_results[0]))
 
-            driver = webdriver.Chrome()
+            driver = webdriver.Chrome(ChromeDriverManager().install())
 
             driver.get(s)
     
