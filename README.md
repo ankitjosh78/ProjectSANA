@@ -1,7 +1,7 @@
 # ProjectSANA
  SANA - A voice controllable virtual assistant based on python to automate your tasks and chat with.
 
-Hi  , this is a  voice enabled virtual assistant made by me (Ankit Josh).
+Hi  , this is a  voice enabled virtual assistant.
 If ,you are wondering why is the name SANA, it is just one of my friend's name ^_^ 
 
 ## What can the assistant do ? Well , the features are listed below:
@@ -38,7 +38,7 @@ Use command pip install -r requirements.txt to install the modules all together.
 Notice, some modules may still need to be downloaded and installed manually.
 
 
-## Required libraries and modules. (Here I mentioned the modules that you need to download. The rest of the modules used in the code are inbuilt with pthon.)
+## Required libraries and modules. (Here I mentioned the modules that you need to download. The rest of the modules used in the code are inbuilt with python.)
 
 #speech_recognition: pip install SpeechRecognition
 
