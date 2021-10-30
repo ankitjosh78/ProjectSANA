@@ -57,7 +57,7 @@ def greet_user():
 def listen():
     listener = sr.Recognizer()  # I am initializing the listener
 
-    with sr.Microphone(device_index=8) as source: # you can list your microphone index using print(sr.Microphone.list_microphones())
+    with sr.Microphone(device_index=8) as source: # you can list your microphone index using print(sr.Microphone.list_microphone_names())
         print("SANA is ready...")
 
         listener.adjust_for_ambient_noise(source, duration=1)  # so that the noise is less
