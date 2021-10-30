@@ -11,7 +11,7 @@ import wikipedia
 from gtts import gTTS
 from playsound import playsound
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.keys import Keys
 
 
@@ -21,7 +21,7 @@ def speak(audio):
 
     file = "SANA_reply_" + str(time.time()) + '.mp3'
 
-    text_to_speech = gTTS(text=audio, lang='en-us', slow=False)  # This converts our text to speech.
+    text_to_speech = gTTS(text=audio, lang='en-uk', slow=False)  # This converts our text to speech.
 
     text_to_speech.save(file)
 
@@ -140,7 +140,7 @@ def sana(command):
 
             speak('Opening Google.....')
 
-            driver = webdriver.Chrome(ChromeDriverManager().install())
+            driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
 
             driver.get('http://www.google.com')
 
@@ -152,9 +152,9 @@ def sana(command):
 
     elif 'github' in command:  # opens your github account.
 
-        driver = webdriver.Chrome(ChromeDriverManager().install())
-
-        driver.get('http://www.github.com/ankitjosh78')  # use your own account id here.
+        
+            driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+            driver.get('http://www.github.com/ankitjosh78')  # use your own account id here.
 
     elif 'youtube' in command:  # to play a video on youtube. example:open youtube play carryminati. It goes with the
         # first search result.
@@ -174,7 +174,9 @@ def sana(command):
 
             s = ("http://www.youtube.com/watch?v={}".format(search_results[0]))
 
-            driver = webdriver.Chrome(ChromeDriverManager().install())
+            
+            driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+
 
             driver.get(s)
     
