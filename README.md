@@ -1,6 +1,3 @@
-# NOTE: It's not working for linux as of now. I'm actually trying to rewrite the entire assistant again, but it will take some time.
-
-
 # ProjectSANA
  SANA - A voice controllable virtual assistant based on python to automate your tasks and chat with.
 
