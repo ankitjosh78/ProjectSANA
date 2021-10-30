@@ -21,7 +21,7 @@ def speak(audio):
 
     file = "SANA_reply_" + str(time.time()) + '.mp3'
 
-    text_to_speech = gTTS(text=audio, lang='en-uk', slow=False)  # This converts our text to speech.
+    text_to_speech = gTTS(text=audio, lang='en-us', slow=False)  # This converts our text to speech.
 
     text_to_speech.save(file)
 
@@ -57,10 +57,8 @@ def greet_user():
 def listen():
     listener = sr.Recognizer()  # I am initializing the listener
 
-    with sr.Microphone() as source:
+    with sr.Microphone(device_index=8) as source: # you can list your microphone index using print(sr.Microphone.list_microphones())
         print("SANA is ready...")
-
-        listener.pause_threshold = 1  # wait for 1 seconds for the voice
 
         listener.adjust_for_ambient_noise(source, duration=1)  # so that the noise is less
 
@@ -69,7 +67,7 @@ def listen():
     try:  # tries to translate it
         print("Recognizing.....")
 
-        command = listener.recognize_google(audio, language='en-in').lower()  # lower() so that there is no case issues
+        command = listener.recognize_google(audio, language='en-us').lower()  # lower() so that there is no case issues
 
         print("You said :", command + '\n')
 
@@ -193,15 +191,6 @@ def sana(command):
         speak(results)
     
     
-    elif 'play music' in command:  # to play a random song from a local directory using groove
-        music_location = 'F:\\Songs'  # the directory from which you want to play the songs
-        song_names = os.listdir(music_location)
-        n = random.randint(0,
-                           99)  # generates a random number between 0 to 99. 99 because I have 100 songs only in that
-        # dir.
-
-        os.startfile(os.path.join(music_location, song_names[n]))
-
     elif "stop" in command or "quit" in command or "bye" in command:
         speak("Okay,see you later :)")
 
