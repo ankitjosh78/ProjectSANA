@@ -25,37 +25,45 @@ Let us start discussing how the assistant will work. The idea is to use speech r
 Accordingly, we can perform various operation. Example: if we find the word "time" we can reply with the current time.
 Refer to the code for better understanding.
 
+## Microphone:
+ You should put your microphone's device index in place of mine.
+ 
+ To know yours, run this in python.
+ 
+ ```
+ 
+ import speech_recognition as sr
+ 
+ print(sr.Microphone.list_microphone_names())
 
-
-
-
+ ```
 
 
 ## Requirements:
 
-Use command pip install -r requirements.txt to install the modules all together.
+Use command `pip install -r requirements.txt` to install the modules all together.
 
 Notice, some modules may still need to be downloaded and installed manually.
 
 
 ## Required libraries and modules. (Here I mentioned the modules that you need to download. The rest of the modules used in the code are inbuilt with python.)
 
-#speech_recognition: pip install SpeechRecognition
+#speech_recognition: `pip install SpeechRecognition`
 
-#gtts: pip install gTTS
+#gtts: `pip install gTTS`
 
-#playsound :pip install playsound
+#playsound : `pip install playsound`
 
-#wikipedia: pip install wikipedia
+#wikipedia: `pip install wikipedia`
 
-#smtplib: pip install smtplib
+#smtplib: `pip install smtplib`
 
-#selenium: pip install selenium
+#selenium: `pip install selenium`
 
-#bs4: pip install bs4
+#bs4: `pip install bs4`
 
-#requests: pip install requests
+#requests: `pip install requests`
 
-#pyaudio: pip install pyaudio
+#pyaudio: `pip install pyaudio`
 
 
