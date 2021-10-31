@@ -9,3 +9,4 @@ urllib3
 wikipedia
 SpeechRecognition
 selenium
+webdriver_manager
